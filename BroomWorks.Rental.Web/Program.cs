@@ -1,7 +1,7 @@
-﻿using BroomWorks.Rental.Data;
-using BroomWorks.Rental.Domain;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-Console.WriteLine("Hello, World!");
+var app = builder.Build();
 
-var repository = new Repository();
-Entity entity = repository.GetEntity();
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
