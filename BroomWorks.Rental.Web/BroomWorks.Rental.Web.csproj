@@ -4,7 +4,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationInsightsResourceId>/subscriptions/194e816a-4d05-4c7a-a63f-4ef7caf65809/resourceGroups/broomworks/providers/microsoft.insights/components/broomworks-web-ai</ApplicationInsightsResourceId>
+    <UserSecretsId>fe66a549-68ae-4678-8b65-d709e0c75d86</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BroomWorks.Rental.Data\BroomWorks.Rental.Data.csproj" />

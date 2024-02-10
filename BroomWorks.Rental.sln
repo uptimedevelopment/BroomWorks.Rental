@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Web", "Br
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Domain.Tests", "BroomWorks.Rental.Domain.Tests\BroomWorks.Rental.Domain.Tests.csproj", "{976C1E4B-5128-4F39-98FC-D4E26580756E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49D34D2C-492A-43CD-9659-806385D326CE}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
