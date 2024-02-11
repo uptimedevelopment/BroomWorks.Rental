@@ -9,12 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Web", "BroomWorks.Rental.Web\BroomWorks.Rental.Web.csproj", "{731F5A41-0022-478F-94AA-B20365AE0FDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Domain.Tests", "BroomWorks.Rental.Domain.Tests\BroomWorks.Rental.Domain.Tests.csproj", "{976C1E4B-5128-4F39-98FC-D4E26580756E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49D34D2C-492A-43CD-9659-806385D326CE}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Architecture.dgml = Architecture.dgml
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Business", "BroomWorks.Rental.Business\BroomWorks.Rental.Business.csproj", "{3A45B099-4248-4218-AEB6-E51EE7A06567}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.Business.UnitTests", "BroomWorks.Rental.Business.UnitTests\BroomWorks.Rental.Business.UnitTests.csproj", "{600912D6-56CA-4C5A-A2F9-B8844B1942F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BroomWorks.Rental.CLI", "BroomWorks.Rental.CLI\BroomWorks.Rental.CLI.csproj", "{BE2374BD-0D03-4585-B3C2-B63F0F0A1C8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +40,18 @@ Global
 		{731F5A41-0022-478F-94AA-B20365AE0FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{731F5A41-0022-478F-94AA-B20365AE0FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{731F5A41-0022-478F-94AA-B20365AE0FDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{976C1E4B-5128-4F39-98FC-D4E26580756E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{976C1E4B-5128-4F39-98FC-D4E26580756E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{976C1E4B-5128-4F39-98FC-D4E26580756E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{976C1E4B-5128-4F39-98FC-D4E26580756E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A45B099-4248-4218-AEB6-E51EE7A06567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A45B099-4248-4218-AEB6-E51EE7A06567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A45B099-4248-4218-AEB6-E51EE7A06567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A45B099-4248-4218-AEB6-E51EE7A06567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600912D6-56CA-4C5A-A2F9-B8844B1942F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600912D6-56CA-4C5A-A2F9-B8844B1942F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600912D6-56CA-4C5A-A2F9-B8844B1942F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600912D6-56CA-4C5A-A2F9-B8844B1942F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2374BD-0D03-4585-B3C2-B63F0F0A1C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2374BD-0D03-4585-B3C2-B63F0F0A1C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2374BD-0D03-4585-B3C2-B63F0F0A1C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2374BD-0D03-4585-B3C2-B63F0F0A1C8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
