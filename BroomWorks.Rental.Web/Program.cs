@@ -1,5 +1,6 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
 {
@@ -8,6 +9,9 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World, CI/CD is a GO <3 !!");
+app.UseStaticFiles();
+
+app.UseRouting();
+app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
