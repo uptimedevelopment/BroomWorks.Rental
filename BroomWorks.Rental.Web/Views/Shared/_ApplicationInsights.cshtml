@@ -1,0 +1,10 @@
+﻿<script>
+    @Html.Raw(JavaScriptSnippet.ScriptBody)
+    @if (User.Identity != null && User.Identity.IsAuthenticated && User.Identity.Name != null)
+    {
+        <text>
+            var appInsightsUserName = '@User.Identity.Name.Replace("\\", "\\\\")';
+            appInsights.setAuthenticatedUserContext(appInsightsUserName.replace(/[,;=| ]+/g, "_"));
+        </text>
+    }
+</script>
