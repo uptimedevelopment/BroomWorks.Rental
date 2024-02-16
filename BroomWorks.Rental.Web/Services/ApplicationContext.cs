@@ -1,14 +1,29 @@
 ﻿using BroomWorks.Rental.Domain;
+using System.Security.Claims;
 
 namespace BroomWorks.Rental.Web.Services;
 
 public class ApplicationContext : IApplicationContext
 {
-    private static readonly Guid _system = Guid.Parse("58d6b1a1-2fff-4d9a-8014-8ca0d75dd48e");
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public Guid CustomerId()
+    public ApplicationContext(IHttpContextAccessor httpContextAccessor)
     {
-        return _system;
+        _httpContextAccessor = httpContextAccessor;
+    }
+
+    public Guid? CustomerId()
+    {
+        if (_httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated == true)
+        {
+            var customerIdValue = _httpContextAccessor.HttpContext.User.FindFirstValue("customerid");
+            if (customerIdValue != null && Guid.TryParse(customerIdValue, out Guid customerId))
+            {
+                return customerId;
+            }
+        }
+
+        return null;
     }
 
     public DateTimeOffset GetCurrentTime()

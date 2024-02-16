@@ -26,4 +26,8 @@
     <ProjectReference Include="..\BroomWorks.Rental.Domain\BroomWorks.Rental.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Reservation\" />
+  </ItemGroup>
+
 </Project>

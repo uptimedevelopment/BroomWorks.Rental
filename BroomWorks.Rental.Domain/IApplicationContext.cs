@@ -3,5 +3,5 @@
 public interface IApplicationContext
 {
     DateTimeOffset GetCurrentTime();
-    Guid CustomerId();
+    Guid? CustomerId();
 }

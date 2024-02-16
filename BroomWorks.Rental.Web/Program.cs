@@ -26,6 +26,8 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
     ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
 });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<IApplicationContext, ApplicationContext>();
 builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
