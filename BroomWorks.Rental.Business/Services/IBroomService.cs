@@ -6,4 +6,5 @@ namespace BroomWorks.Rental.Business.Services;
 public interface IBroomService
 {
     Task<Broom> GetBroomAsync(Guid broomId);
+    Task DeleteBroomAsync(Guid broomId);
 }

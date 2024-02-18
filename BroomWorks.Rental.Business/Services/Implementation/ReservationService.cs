@@ -49,6 +49,24 @@ public class ReservationService : IReservationService
         reservation.End = _applicationContext.GetCurrentTime();
         await _reservationRepository.CommitAsync();
     }
+
+    public Task<bool> IsBroomReservedAsync(Guid broomId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<decimal> GetDiscountForBirthdayAsync(Guid customerId)
+    {
+        var customer = await _customerService.GetCustomerAsync(customerId);
+        var now = _applicationContext.GetCurrentTime();
+
+        if (customer.DateOfBirth.Month == now.Month && customer.DateOfBirth.Date == now.Date)
+            return 0.5m;
+        else
+            return 1;
+    }
+
+
 }
 
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed

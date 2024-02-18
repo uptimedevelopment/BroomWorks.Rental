@@ -1,6 +1,7 @@
 ﻿using BroomWorks.Rental.Business.Services;
 using BroomWorks.Rental.Business.Services.Implementation;
 using BroomWorks.Rental.Domain;
+using BroomWorks.Rental.Domain.Entities;
 using BroomWorks.Rental.Domain.Repositories;
 using NSubstitute;
 using Xunit;
@@ -34,4 +35,38 @@ public class ReservationServiceTests
         reservationRepository.Received(1).Add(reservation);
         await reservationRepository.Received(1).CommitAsync();
     }
+
+    [Theory]
+    [InlineData("1990-02-03", 0.5)]
+    // TODO
+    public async Task GetDiscountForBirthdayAsync_GivesDiscount(DateTime currentTime, decimal expectedDiscount)
+    {
+        // Arrange
+        var customer = new Customer
+        {
+            Name = "Tanel",
+            DateOfBirth = DateTime.Parse("1990-02-03"),            
+        };
+
+        var reservationRepository = Substitute.For<IReservationRepository>();
+        var customerService = Substitute.For<ICustomerService>();
+        var broomService = Substitute.For<IBroomService>();
+        var applicationContext = Substitute.For<IApplicationContext>();
+
+        customerService.GetCustomerAsync(customer.Id).Returns(customer);
+        applicationContext.GetCurrentTime().Returns(currentTime);
+
+        var sut = new ReservationService(
+            reservationRepository,
+            customerService,
+            broomService,
+            applicationContext);
+
+        // Act
+        var actualDiscount = await sut.GetDiscountForBirthdayAsync(customer.Id);
+
+        // Assert
+        Assert.Equal(expectedDiscount, actualDiscount);
+    }
+
 }

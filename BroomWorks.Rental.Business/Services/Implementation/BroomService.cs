@@ -12,6 +12,11 @@ public class BroomService : IBroomService
         _broomRepository = broomRepository;
     }
 
+    public Task DeleteBroomAsync(Guid broomId)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Broom> GetBroomAsync(Guid broomId)
     {
         return await _broomRepository.GetByIdAsync(broomId);
