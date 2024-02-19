@@ -16,7 +16,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddUserManager<ApplicationUserManager>();
 
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<ApplicationDbContext>();

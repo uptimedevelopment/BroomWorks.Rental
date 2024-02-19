@@ -7,6 +7,8 @@ public interface IReservationService
     Task<Reservation> StartReservationAsync(Guid broomId, Guid customerId);
     Task EndReservationAsync(Guid reservationId);
 
-    Task<bool> IsBroomReservedAsync(Guid broomId);
+    Task<Reservation[]> GetReservationsForCustomerAsync(Guid customerId);
+    Task<Broom[]> GetAvailableBroomsAsync();
+
     Task<decimal> GetDiscountForBirthdayAsync(Guid customerId);
 }

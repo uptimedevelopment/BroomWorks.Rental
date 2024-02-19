@@ -1,4 +1,22 @@
-﻿
+﻿@using BroomWorks.Rental.Domain.Entities
+@using BroomWorks.Rental.Web.Models.Reservation
+@model IndexModel
 
-
-
+@if (Model.ActiveReservation != null)
+{
+    <h2>Reservatsioon</h2>
+    <div>Algus: @Model.ActiveReservation.Start.DateTime @Model.ActiveReservation.Broom.RegistrationNumber</div>
+    <form method="post">
+        <button class="btn btn-warning">Lõpeta</button>
+    </form>
+}
+else
+{
+    <h2>Vabad luuad: @Model.AvailableBroom.Length</h2>
+    @foreach (var broom in Model.AvailableBroom)
+    {
+        <div>
+            <a asp-controller="Reservation" asp-action="Reserve" asp-route-id="@broom.Id">@broom.RegistrationNumber</a>
+        </div>
+    }
+}

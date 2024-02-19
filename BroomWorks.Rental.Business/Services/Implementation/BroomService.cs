@@ -17,6 +17,11 @@ public class BroomService : IBroomService
         throw new NotImplementedException();
     }
 
+    public async Task<Broom[]> GetAllBroomsAsync()
+    {
+        return await _broomRepository.GetAllAsync();
+    }
+
     public async Task<Broom> GetBroomAsync(Guid broomId)
     {
         return await _broomRepository.GetByIdAsync(broomId);

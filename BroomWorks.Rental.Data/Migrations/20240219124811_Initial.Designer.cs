@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BroomWorks.Rental.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240215101939_Database")]
-    partial class Database
+    [Migration("20240219124811_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,33 @@ namespace BroomWorks.Rental.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("94df8a75-f836-417c-84a3-2035c163d403"),
+                            RegistrationNumber = "AAA"
+                        },
+                        new
+                        {
+                            Id = new Guid("12cb6e44-0530-4cf6-a499-9b9ebd3a7149"),
+                            RegistrationNumber = "BBB"
+                        },
+                        new
+                        {
+                            Id = new Guid("4618d977-f89a-4e99-b1b9-222d1afcf3d5"),
+                            RegistrationNumber = "CCC"
+                        },
+                        new
+                        {
+                            Id = new Guid("c997e490-25de-41f5-aba2-b58fcedf1846"),
+                            RegistrationNumber = "DDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("52b916d9-d403-4c2d-88e2-608d9dfa4d3c"),
+                            RegistrationNumber = "EEE"
+                        });
                 });
 
             modelBuilder.Entity("BroomWorks.Rental.Domain.Entities.Customer", b =>
@@ -45,6 +72,9 @@ namespace BroomWorks.Rental.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("DateOfBirth")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -67,7 +97,7 @@ namespace BroomWorks.Rental.Data.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("End")
+                    b.Property<DateTimeOffset?>("End")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset>("Start")

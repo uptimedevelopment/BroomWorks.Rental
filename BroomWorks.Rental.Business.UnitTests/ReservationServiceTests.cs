@@ -3,6 +3,7 @@ using BroomWorks.Rental.Business.Services.Implementation;
 using BroomWorks.Rental.Domain;
 using BroomWorks.Rental.Domain.Entities;
 using BroomWorks.Rental.Domain.Repositories;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
 
@@ -21,12 +22,16 @@ public class ReservationServiceTests
         var customerService = Substitute.For<ICustomerService>();
         var broomService = Substitute.For<IBroomService>();
         var applicationContext = Substitute.For<IApplicationContext>();
+        var logger = Substitute.For<ILogger<ReservationService>>();
+
+        reservationRepository.IsBroomReservedAsync(broomId).Returns(false);
 
         var sut = new ReservationService(
             reservationRepository,
             customerService,
             broomService,
-            applicationContext);
+            applicationContext,
+            logger);
 
         // Act
         var reservation = await sut.StartReservationAsync(broomId, customerId);
@@ -38,7 +43,6 @@ public class ReservationServiceTests
 
     [Theory]
     [InlineData("1990-02-03", 0.5)]
-    // TODO
     public async Task GetDiscountForBirthdayAsync_GivesDiscount(DateTime currentTime, decimal expectedDiscount)
     {
         // Arrange
@@ -52,6 +56,7 @@ public class ReservationServiceTests
         var customerService = Substitute.For<ICustomerService>();
         var broomService = Substitute.For<IBroomService>();
         var applicationContext = Substitute.For<IApplicationContext>();
+        var logger = Substitute.For<ILogger<ReservationService>>();
 
         customerService.GetCustomerAsync(customer.Id).Returns(customer);
         applicationContext.GetCurrentTime().Returns(currentTime);
@@ -60,7 +65,8 @@ public class ReservationServiceTests
             reservationRepository,
             customerService,
             broomService,
-            applicationContext);
+            applicationContext,
+            logger);
 
         // Act
         var actualDiscount = await sut.GetDiscountForBirthdayAsync(customer.Id);

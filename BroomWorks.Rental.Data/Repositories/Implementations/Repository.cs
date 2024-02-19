@@ -1,11 +1,12 @@
 ﻿using BroomWorks.Rental.Domain.Entities;
 using BroomWorks.Rental.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BroomWorks.Rental.Data.Repositories.Implementations;
 
 public abstract class Repository<T> : IRepository<T> where T : Entity
 {
-    private readonly ApplicationDbContext _db;
+    protected readonly ApplicationDbContext _db;
 
     protected Repository(ApplicationDbContext db)
     {
@@ -25,5 +26,10 @@ public abstract class Repository<T> : IRepository<T> where T : Entity
     public void Add(T entity)
     {
         _db.Add(entity);
+    }
+
+    public async Task<T[]> GetAllAsync()
+    {
+        return await _db.Set<T>().ToArrayAsync();
     }
 }

@@ -15,4 +15,33 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         : base(options)
     {        
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<Broom>().HasData(
+        [
+            new Broom
+            {
+                RegistrationNumber = "AAA",
+            },
+            new Broom
+            {
+                RegistrationNumber = "BBB",
+            },
+            new Broom
+            {
+                RegistrationNumber = "CCC",
+            },
+            new Broom
+            {
+                RegistrationNumber = "DDD",
+            },
+            new Broom
+            {
+                RegistrationNumber = "EEE",
+            },
+        ]);
+    }
 }
