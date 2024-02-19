@@ -4,6 +4,7 @@ using BroomWorks.Rental.Domain;
 using BroomWorks.Rental.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,10 @@ builder.Services.AddHealthChecks()
 
 builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
 {
-    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],    
+    EnableAdaptiveSampling = false,
 });
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("BroomWorks", LogLevel.Trace);
 
 builder.Services.AddHttpContextAccessor();
 
