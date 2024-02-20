@@ -42,7 +42,9 @@ public class ReservationServiceTests
     }
 
     [Theory]
+    //            praegu   soodustus
     [InlineData("1990-02-03", 0.5)]
+    [InlineData("2000-02-03", 0.5)]
     public async Task GetDiscountForBirthdayAsync_GivesDiscount(DateTime currentTime, decimal expectedDiscount)
     {
         // Arrange

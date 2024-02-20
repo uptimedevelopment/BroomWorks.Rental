@@ -90,11 +90,10 @@ public class ReservationService : IReservationService
         var customer = await _customerService.GetCustomerAsync(customerId);
         var now = _applicationContext.GetCurrentTime();
 
-        if (customer.DateOfBirth.Month == now.Month && customer.DateOfBirth.Date == now.Date)
+        if (customer.DateOfBirth.Month == now.Month && customer.DateOfBirth.Day == now.Day)
             return 0.5m;
         else
             return 1;
     }
 }
-
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
