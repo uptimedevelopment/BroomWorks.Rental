@@ -35,4 +35,9 @@ public class CustomerService : ICustomerService
     {
         return await _customerRepository.GetCustomerByNameAsync(name);
     }
+
+    public Task<Customer[]> GetCustomersAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

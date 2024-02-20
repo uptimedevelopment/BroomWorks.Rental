@@ -72,7 +72,7 @@ public class ReservationService : IReservationService
 
     public async Task<Broom[]> GetAvailableBroomsAsync()
     {
-        var brooms = await _broomService.GetAllBroomsAsync();
+        var brooms = await _broomService.GetBroomsAsync();
 
         var availableBrooms = new List<Broom>();
         foreach (var broom in brooms)
@@ -94,6 +94,36 @@ public class ReservationService : IReservationService
             return 0.5m;
         else
             return 1;
+    }
+
+    public Task<Reservation[]> GetReservationsAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsBroomReserved(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<decimal> GetDiscountForBirthdayAsync(Customer customer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Reservation[]> GetReservationsForCustomerAsync(Customer result)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Reservation[]> GetReservationsForBroomAsync(Broom broom)
+    {
+        throw new NotImplementedException();
     }
 }
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed

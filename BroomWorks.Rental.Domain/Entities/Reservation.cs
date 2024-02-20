@@ -7,4 +7,5 @@ public class Reservation : Entity
 
     public DateTimeOffset Start { get; set; }
     public DateTimeOffset? End { get; set; }
+    public string Type { get; set; }
 }
