@@ -82,7 +82,7 @@ public class ReservationService : IReservationService
                 availableBrooms.Add(broom);
             }
         }
-        return availableBrooms.ToArray();
+        return [.. availableBrooms];
     }
 
     public async Task<decimal> GetDiscountForBirthdayAsync(Guid customerId)

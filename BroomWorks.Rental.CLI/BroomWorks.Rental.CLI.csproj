@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.13.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.66.1" />
+    <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BroomWorks.Rental.Business\BroomWorks.Rental.Business.csproj" />
     <ProjectReference Include="..\BroomWorks.Rental.Data\BroomWorks.Rental.Data.csproj" />
     <ProjectReference Include="..\BroomWorks.Rental.Domain\BroomWorks.Rental.Domain.csproj" />
