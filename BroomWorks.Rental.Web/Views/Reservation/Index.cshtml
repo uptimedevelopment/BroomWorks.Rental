@@ -12,8 +12,8 @@
 }
 else
 {
-    <h2>Vabad luuad: @Model.AvailableBroom.Length</h2>
-    @foreach (var broom in Model.AvailableBroom)
+    <h2>Vabad luuad: @Model.AvailableBrooms.Length</h2>
+    @foreach (var broom in Model.AvailableBrooms)
     {
         <div>
             <a asp-controller="Reservation" asp-action="Reserve" asp-route-id="@broom.Id">@broom.RegistrationNumber</a>

@@ -32,7 +32,8 @@ public class ReservationController : Controller
         var model = new IndexModel
         {
             ActiveReservation = reservations.FirstOrDefault(x => x.End == null),
-            AvailableBroom = brooms,
+            AvailableBrooms = brooms,
+
         };
 
         return View(model);
@@ -51,7 +52,7 @@ public class ReservationController : Controller
         var model = new IndexModel
         {
             ActiveReservation = null,
-            AvailableBroom = brooms,
+            AvailableBrooms = brooms,
         };
 
         return View("Index", model);
