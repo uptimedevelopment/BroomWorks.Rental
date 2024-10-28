@@ -90,7 +90,7 @@ public class ReservationService : IReservationService
         var customer = await _customerService.GetCustomerAsync(customerId);
         var now = _applicationContext.GetCurrentTime();
 
-        if (customer.DateOfBirth.Month == now.Month && customer.DateOfBirth.Day == now.Day)
+        if (customer.DateOfBirth.Month == now.Month && customer.DateOfBirth.Date == now.Date)
             return 0.5m;
         else
             return 1;
