@@ -27,6 +27,7 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
 {
     ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],
     EnableAdaptiveSampling = false,
+    EnableAuthenticationTrackingJavaScript = true,    
 });
 builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("BroomWorks", LogLevel.Trace);
 
