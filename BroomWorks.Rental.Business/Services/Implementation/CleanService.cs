@@ -91,7 +91,7 @@ public abstract class CleanService
         // Id of Customer
         public Guid Id { get; set; }
         // Name of Customer
-        public string Name { get; set; }
+        public string? Name { get; set; }
         // Birthday of Customer
         public DateTimeOffset DateOfBirth { get; set; }
     }
@@ -504,7 +504,7 @@ public abstract class CleanService
             broom.IsActive = false;
             broom.RegistrationNumber += " - INACTIVE";
             _archiveService.MarkBroomAsDeactivatedAsync(broom).Wait();
-            _logger.LogInformation($"Broom {broom.Id} is deactivated");
+            _logger.LogInformation("Broom {broomId} is deactivated", broom.Id);
         }
     }
 
@@ -523,7 +523,7 @@ public abstract class CleanService
         broom.IsActive = false;
         broom.RegistrationNumber += " - INACTIVE";
         _archiveService.MarkBroomAsDeactivatedAsync(broom).Wait();
-        _logger.LogInformation($"Broom {broom.Id} is deactivated");
+        _logger.LogInformation("Broom {broomId} is deactivated", broom.Id);
     }
     #endregion
 
@@ -532,7 +532,7 @@ public abstract class CleanService
     // need logid ei jookse prodis
     // õpi normaalselt debuggerit kasutama
 
-    public decimal CalculateProfitForBroom(Guid broomId, decimal totalSalaryCost)
+    public decimal CalculateProfitForBroom(Guid broomId)
     {
         _logger.LogDebug($"Start CalculateProfitForBroom");
 
@@ -544,7 +544,7 @@ public abstract class CleanService
         {
             if (IsReservationEnded(reservation))
             {
-                _logger.LogDebug($"Adding reservarion {reservation.Id}");
+                _logger.LogDebug("Adding reservarion {reservationId}", reservation.Id);
                 sum += GetReservationCost(reservation);
             }
         }
