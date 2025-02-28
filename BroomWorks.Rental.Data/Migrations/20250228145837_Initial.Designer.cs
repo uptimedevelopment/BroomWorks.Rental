@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BroomWorks.Rental.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250228142637_Initial")]
+    [Migration("20250228145837_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,33 +38,6 @@ namespace BroomWorks.Rental.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brooms");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d47e39cb-3ea5-42cb-846b-fd30f3b8d359"),
-                            RegistrationNumber = "AAA"
-                        },
-                        new
-                        {
-                            Id = new Guid("6cd84f96-2d33-4ed9-a243-987368f0ca0f"),
-                            RegistrationNumber = "BBB"
-                        },
-                        new
-                        {
-                            Id = new Guid("6efe7d1a-653c-4e66-8857-10c25f8e5280"),
-                            RegistrationNumber = "CCC"
-                        },
-                        new
-                        {
-                            Id = new Guid("2bd6d6ff-f983-4c97-93ec-cef5e47f6768"),
-                            RegistrationNumber = "DDD"
-                        },
-                        new
-                        {
-                            Id = new Guid("dd08d366-b811-4a35-a4b0-e0948b15a3a5"),
-                            RegistrationNumber = "EEE"
-                        });
                 });
 
             modelBuilder.Entity("BroomWorks.Rental.Domain.Entities.Customer", b =>
