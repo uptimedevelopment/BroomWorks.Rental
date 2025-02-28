@@ -7,7 +7,7 @@ env:
   AZURE_WEBAPP_NAME: luuarent
   AZURE_WEBAPP_PACKAGE_PATH: BroomWorks.Rental.Web/published
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 8.0.x
+  DOTNET_CORE_VERSION: 9.0.x
   WORKING_DIRECTORY: BroomWorks.Rental.Web
 jobs:
   build:
