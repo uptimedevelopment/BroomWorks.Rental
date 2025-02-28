@@ -17,7 +17,7 @@ namespace BroomWorks.Rental.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -39,27 +39,27 @@ namespace BroomWorks.Rental.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("94df8a75-f836-417c-84a3-2035c163d403"),
+                            Id = new Guid("d47e39cb-3ea5-42cb-846b-fd30f3b8d359"),
                             RegistrationNumber = "AAA"
                         },
                         new
                         {
-                            Id = new Guid("12cb6e44-0530-4cf6-a499-9b9ebd3a7149"),
+                            Id = new Guid("6cd84f96-2d33-4ed9-a243-987368f0ca0f"),
                             RegistrationNumber = "BBB"
                         },
                         new
                         {
-                            Id = new Guid("4618d977-f89a-4e99-b1b9-222d1afcf3d5"),
+                            Id = new Guid("6efe7d1a-653c-4e66-8857-10c25f8e5280"),
                             RegistrationNumber = "CCC"
                         },
                         new
                         {
-                            Id = new Guid("c997e490-25de-41f5-aba2-b58fcedf1846"),
+                            Id = new Guid("2bd6d6ff-f983-4c97-93ec-cef5e47f6768"),
                             RegistrationNumber = "DDD"
                         },
                         new
                         {
-                            Id = new Guid("52b916d9-d403-4c2d-88e2-608d9dfa4d3c"),
+                            Id = new Guid("dd08d366-b811-4a35-a4b0-e0948b15a3a5"),
                             RegistrationNumber = "EEE"
                         });
                 });

@@ -76,5 +76,4 @@ public class ReservationServiceTests
         // Assert
         Assert.Equal(expectedDiscount, actualDiscount);
     }
-
 }
