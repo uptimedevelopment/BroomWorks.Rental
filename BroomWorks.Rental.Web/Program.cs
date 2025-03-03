@@ -25,8 +25,9 @@ builder.Services.AddHealthChecks()
 
 builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
 {
-    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],    
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],
     EnableAdaptiveSampling = false,
+    EnableAuthenticationTrackingJavaScript = true,
 });
 builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("BroomWorks", LogLevel.Trace);
 

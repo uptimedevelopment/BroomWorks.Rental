@@ -51,7 +51,7 @@ public class ReservationServiceTests
         var customer = new Customer
         {
             Name = "Tanel",
-            DateOfBirth = DateTime.Parse("1990-02-03"),            
+            DateOfBirth = DateTime.Parse("1990-02-03"),
         };
 
         var reservationRepository = Substitute.For<IReservationRepository>();
@@ -76,5 +76,4 @@ public class ReservationServiceTests
         // Assert
         Assert.Equal(expectedDiscount, actualDiscount);
     }
-
 }

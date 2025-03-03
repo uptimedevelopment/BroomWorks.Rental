@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace BroomWorks.Rental.Data.Migrations
 {
     /// <inheritdoc />
@@ -208,18 +206,6 @@ namespace BroomWorks.Rental.Data.Migrations
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Brooms",
-                columns: new[] { "Id", "RegistrationNumber" },
-                values: new object[,]
-                {
-                    { new Guid("12cb6e44-0530-4cf6-a499-9b9ebd3a7149"), "BBB" },
-                    { new Guid("4618d977-f89a-4e99-b1b9-222d1afcf3d5"), "CCC" },
-                    { new Guid("52b916d9-d403-4c2d-88e2-608d9dfa4d3c"), "EEE" },
-                    { new Guid("94df8a75-f836-417c-84a3-2035c163d403"), "AAA" },
-                    { new Guid("c997e490-25de-41f5-aba2-b58fcedf1846"), "DDD" }
                 });
 
             migrationBuilder.CreateIndex(

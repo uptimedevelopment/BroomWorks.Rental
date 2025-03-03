@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
-using BroomWorks.Rental.Domain;
+﻿using BroomWorks.Rental.Domain;
 using BroomWorks.Rental.Domain.Entities;
 using BroomWorks.Rental.Domain.Repositories;
 using Microsoft.Extensions.Logging;
@@ -50,7 +48,7 @@ public class ReservationService : IReservationService
         };
 
         _reservationRepository.Add(reservation);
-        _reservationRepository.CommitAsync();
+        _ = _reservationRepository.CommitAsync();
 
         return reservation;
     }
@@ -82,7 +80,7 @@ public class ReservationService : IReservationService
                 availableBrooms.Add(broom);
             }
         }
-        return availableBrooms.ToArray();
+        return [.. availableBrooms];
     }
 
     public async Task<decimal> GetDiscountForBirthdayAsync(Guid customerId)
@@ -126,4 +124,3 @@ public class ReservationService : IReservationService
         throw new NotImplementedException();
     }
 }
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
