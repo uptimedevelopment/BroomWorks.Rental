@@ -14,10 +14,10 @@
     
     @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     <partial name="_Navigation" />   
 
-    <main class="container">
+    <main class="container flex-grow-1 d-flex">
         @RenderBody()
     </main>
     
