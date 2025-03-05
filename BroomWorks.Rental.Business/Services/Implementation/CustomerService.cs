@@ -26,6 +26,11 @@ public class CustomerService : ICustomerService
         return customer;
     }
 
+    public Customer GetCustomer(Guid customerId)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Customer> GetCustomerAsync(Guid customerId)
     {
         return await _customerRepository.GetByIdAsync(customerId);
@@ -34,6 +39,11 @@ public class CustomerService : ICustomerService
     public async Task<Customer> GetCustomerByNameAsync(string name)
     {
         return await _customerRepository.GetCustomerByNameAsync(name);
+    }
+
+    public Customer[] GetCustomers()
+    {
+        throw new NotImplementedException();
     }
 
     public Task<Customer[]> GetCustomersAsync()

@@ -8,4 +8,7 @@ public interface ICustomerService
     Task<Customer> CreateCustomerAsync(string username);
     Task<Customer> GetCustomerByNameAsync(string name);
     Task<Customer[]> GetCustomersAsync();
+
+    Customer GetCustomer(Guid customerId);
+    Customer[] GetCustomers();
 }

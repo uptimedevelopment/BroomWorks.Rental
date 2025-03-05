@@ -26,4 +26,14 @@ public class BroomService : IBroomService
     {
         return await _broomRepository.GetByIdAsync(broomId);
     }
+
+    public Broom[] GetBrooms()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Broom GetBroom(Guid broomId)
+    {
+        throw new NotImplementedException();
+    }
 }

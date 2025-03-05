@@ -123,4 +123,39 @@ public class ReservationService : IReservationService
     {
         throw new NotImplementedException();
     }
+
+    public Reservation[] GetReservations()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Delete(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public decimal GetDiscountForBirthday(Customer customer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Reservation[] GetReservationsForCustomer(Customer customer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Reservation[] GetReservationsForCustomer(Guid customerId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Broom[] GetAvailableBrooms()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Reservation[] GetReservationsForBroom(Broom broom)
+    {
+        throw new NotImplementedException();
+    }
 }

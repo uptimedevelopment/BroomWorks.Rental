@@ -8,4 +8,7 @@ public interface IBroomService
     Task<Broom> GetBroomAsync(Guid broomId);
     Task DeleteBroomAsync(Guid broomId);
     Task<Broom[]> GetBroomsAsync();
+
+    Broom[] GetBrooms();
+    Broom GetBroom(Guid broomId);
 }

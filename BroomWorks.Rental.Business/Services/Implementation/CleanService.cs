@@ -36,7 +36,7 @@ public abstract class CleanService
 
     public bool IsCustomerBirthday1(Guid customerId)
     {
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
+        var customer = _customerService.GetCustomer(customerId);
         if (customer == null)
         {
             throw new Exception("klient on kadunud");
@@ -55,7 +55,7 @@ public abstract class CleanService
 
     public bool IsCustomerBirthday2(Guid customerId)
     {
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
+        var customer = _customerService.GetCustomer(customerId);
 
         if (customer != null)
         {
@@ -111,7 +111,7 @@ public abstract class CleanService
 
     public decimal CalculateProfit(decimal totalSalaryCost)
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         // reservations = reservations.Where(r => r.Type == "LongTerm").ToArray();
         // _logger.LogInformation($"{reservations.Length} bronni arvutuses");
@@ -150,7 +150,7 @@ public abstract class CleanService
 
     public Guid? WhoHasBroom1(Guid broomId)
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         Customer? customer = null;
 
@@ -172,7 +172,7 @@ public abstract class CleanService
 
     public Guid? WhoHasBroom2(Guid broomId)
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         Customer? customer = reservations
             .FirstOrDefault(r => r.Broom.Id == broomId)
@@ -190,7 +190,7 @@ public abstract class CleanService
 
     public void DeleteAllEndedReservations1()
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         foreach (var reservation in reservations)
         {
@@ -204,7 +204,7 @@ public abstract class CleanService
 
     public void DeleteAllEndedReservations2()
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         foreach (var reservation in reservations)
         {
@@ -224,8 +224,8 @@ public abstract class CleanService
 
     public Broom[] GetAllActivelyReservedBrooms1()
     {
-        var brooms = _broomService.GetBroomsAsync().Result;
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var brooms = _broomService.GetBrooms();
+        var reservations = _reservationService.GetReservations();
 
         var activeReservations = reservations.Where(reservation => reservation.End == null);
 
@@ -238,8 +238,8 @@ public abstract class CleanService
 
     public Broom[] GetAllActivelyReservedBrooms2()
     {
-        var brooms = _broomService.GetBroomsAsync().Result;
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var brooms = _broomService.GetBrooms();
+        var reservations = _reservationService.GetReservations();
 
         var activeReservations = reservations.Where(r => r.End == null);
 
@@ -257,13 +257,13 @@ public abstract class CleanService
 
     public void DeleteAllReservations()
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
         foreach (var reservation in reservations)
         {
             if (reservation.End != null)
             {
-                _reservationService.DeleteAsync(reservation.Id).Wait();
+                _reservationService.Delete(reservation.Id);
             }
         }
     }
@@ -280,13 +280,13 @@ public abstract class CleanService
 
     public decimal CalculateInvoiceAmount1(Guid customerId)
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
 
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
+        var customer = _customerService.GetCustomer(customerId);
 
         var endedReservations = reservations.Where(IsReservationEnded);
 
-        var discount = _reservationService.GetDiscountForBirthdayAsync(customer).Result;
+        var discount = _reservationService.GetDiscountForBirthday(customer);
 
         var customerEndedReservations = endedReservations.Where(r => r.Customer.Id == customer.Id);
 
@@ -298,14 +298,14 @@ public abstract class CleanService
 
     public decimal CalculateInvoiceAmount2(Guid customerId)
     {
-        var reservations = _reservationService.GetReservationsAsync().Result;
+        var reservations = _reservationService.GetReservations();
         var endedReservations = reservations.Where(IsReservationEnded);
         var customerEndedReservations = endedReservations.Where(r => r.Customer.Id == customerId);
 
         var totalAmount = customerEndedReservations.Select(GetReservationCost).Sum();
 
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
-        var discount = _reservationService.GetDiscountForBirthdayAsync(customer).Result;
+        var customer = _customerService.GetCustomer(customerId);
+        var discount = _reservationService.GetDiscountForBirthday(customer);
         var totalDiscountedAmount = totalAmount * discount;
 
         return totalDiscountedAmount;
@@ -323,14 +323,14 @@ public abstract class CleanService
 
     public decimal GetCustomerDiscount1(Guid customerId)
     {
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
+        var customer = _customerService.GetCustomer(customerId);
 
         return customer == null ? 0m : IsCustomerBirthday1(customerId) ? 0.5m : 1m;
     }
 
     public decimal GetCustomerDiscount2(Guid customerId)
     {
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
+        var customer = _customerService.GetCustomer(customerId);
 
         if (customer == null)
         {
@@ -354,7 +354,7 @@ public abstract class CleanService
     public bool IsCustomerEligibleForCampaign1(Customer customer)
     {
         var now = _applicationContext.GetCurrentTime();
-        var customerReservations = _reservationService.GetReservationsForCustomerAsync(customer.Id).Result;
+        var customerReservations = _reservationService.GetReservationsForCustomer(customer.Id);
 
         if ((now.Year - customer.DateOfBirth.Year > 18)
             && customer.ActivatedBy != null
@@ -395,7 +395,7 @@ public abstract class CleanService
 
     private bool HasCustomerReservations(Customer customer)
     {
-        var customerReservations = _reservationService.GetReservationsForCustomerAsync(customer.Id).Result;
+        var customerReservations = _reservationService.GetReservationsForCustomer(customer.Id);
         return customerReservations.Any();
     }
 
@@ -445,8 +445,8 @@ public abstract class CleanService
 
     public string BuildCustomerReport1(Guid CustomerId)
     {
-        var Customer = _customerService.GetCustomerAsync(CustomerId).Result;
-        var Reservations = _reservationService.GetReservationsForCustomerAsync(CustomerId).Result;
+        var Customer = _customerService.GetCustomer(CustomerId);
+        var Reservations = _reservationService.GetReservationsForCustomer(CustomerId);
 
         // keegi leidis vea ja tegi paranduse
         var ended_reservations = Reservations.Where(IsReservationEnded).ToArray();
@@ -459,8 +459,8 @@ public abstract class CleanService
 
     public string BuildCustomerReport2(Guid CustomerId)
     {
-        var Customer = _customerService.GetCustomerAsync(CustomerId).Result;
-        var Reservations = _reservationService.GetReservationsForCustomerAsync(CustomerId).Result;
+        var Customer = _customerService.GetCustomer(CustomerId);
+        var Reservations = _reservationService.GetReservationsForCustomer(CustomerId);
         var EndedReservations = Reservations.Where(IsReservationEnded).ToArray();
 
         var TotalSum = EndedReservations.Select(GetReservationCost).Sum();
@@ -476,14 +476,14 @@ public abstract class CleanService
 
     public string BuildReservationReport1(Guid customerId)
     {
-        var reservations = _reservationService.GetReservationsForCustomerAsync(_customerService.GetCustomerAsync(customerId).Result).Result;
+        var reservations = _reservationService.GetReservationsForCustomer(_customerService.GetCustomer(customerId));
         return $"Klient tegi {reservations.Length} bronni";
     }
 
     public string BuildReservationReport2(Guid customerId)
     {
-        var customer = _customerService.GetCustomerAsync(customerId).Result;
-        var reservations = _reservationService.GetReservationsForCustomerAsync(customer).Result;
+        var customer = _customerService.GetCustomer(customerId);
+        var reservations = _reservationService.GetReservationsForCustomer(customer);
 
         return $"Klient tegi {reservations.Length} bronni";
     }
@@ -497,20 +497,20 @@ public abstract class CleanService
 
     public void DeactivateInactiveBrooms1()
     {
-        var brooms = _reservationService.GetAvailableBroomsAsync().Result;
+        var brooms = _reservationService.GetAvailableBrooms();
 
         foreach (var broom in brooms)
         {
             broom.IsActive = false;
             broom.RegistrationNumber += " - INACTIVE";
-            _archiveService.MarkBroomAsDeactivatedAsync(broom).Wait();
+            _archiveService.MarkBroomAsDeactivated(broom);
             _logger.LogInformation("Broom {broomId} is deactivated", broom.Id);
         }
     }
 
     public void DeactivateInactiveBrooms2()
     {
-        var brooms = _reservationService.GetAvailableBroomsAsync().Result;
+        var brooms = _reservationService.GetAvailableBrooms();
 
         foreach (var broom in brooms)
         {
@@ -522,7 +522,7 @@ public abstract class CleanService
     {
         broom.IsActive = false;
         broom.RegistrationNumber += " - INACTIVE";
-        _archiveService.MarkBroomAsDeactivatedAsync(broom).Wait();
+        _archiveService.MarkBroomAsDeactivated(broom);
         _logger.LogInformation("Broom {broomId} is deactivated", broom.Id);
     }
     #endregion
@@ -536,9 +536,9 @@ public abstract class CleanService
     {
         _logger.LogDebug($"Start CalculateProfitForBroom");
 
-        var broom = _broomService.GetBroomAsync(broomId).Result;
+        var broom = _broomService.GetBroom(broomId);
 
-        var reservations = _reservationService.GetReservationsForBroomAsync(broom).Result;
+        var reservations = _reservationService.GetReservationsForBroom(broom);
         var sum = 0m;
         foreach (var reservation in reservations)
         {
@@ -566,7 +566,7 @@ public abstract class CleanService
 
     public void MassActivateCustomers1()
     {
-        var customers = _customerService.GetCustomersAsync().Result;
+        var customers = _customerService.GetCustomers();
 
         foreach (var customer in customers)
         {
@@ -589,7 +589,7 @@ public abstract class CleanService
 
     public void MassActivateCustomers2()
     {
-        var customers = _customerService.GetCustomersAsync().Result;
+        var customers = _customerService.GetCustomers();
 
         foreach (var customer in customers)
         {
@@ -614,7 +614,6 @@ public abstract class CleanService
         customer.IsActive = true;
         customer.IsDangerous = true;
     }
-
 
     #endregion
 }
